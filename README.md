@@ -1,2 +1,3 @@
-# Veebirakenduste-loomine---KA
-yhine homework repo
+# Veebirakenduste-loomine---KA (LTAT.05.004)
+
+
