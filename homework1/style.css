@@ -1,3 +1,7 @@
+/* =========================================================
+   GLOBAL — applies to every page
+   ========================================================= */
+
 * {
     box-sizing: border-box;
 }
@@ -11,7 +15,11 @@ body {
     line-height: 1.5;
 }
 
-/* Top bar */
+
+/* =========================================================
+   HEADER / NAVIGATION — top bar with Home, AddPost and Login links
+   ========================================================= */
+
 body > header {
     max-width: 1100px;
     margin: 0 auto 16px;
@@ -36,15 +44,32 @@ nav a:hover {
     background: #dcdde0;
 }
 
-/* Three-column layout */
+
+/* =========================================================
+   MAIN LAYOUT — three-column flex layout: aside | posts | aside
+   (all pages; on addPost.html and login.html the form is the only child)
+   ========================================================= */
+
 main {
     max-width: 1100px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 220px 1fr 220px;
+    display: flex;
     gap: 16px;
-    align-items: start;
+    align-items: flex-start;
 }
+
+main > aside {
+    flex: 0 0 220px;
+}
+
+main > section {
+    flex: 1;
+}
+
+
+/* =========================================================
+   SIDEBARS — "About" and "Trending" boxes (index.html)
+   ========================================================= */
 
 aside {
     padding: 16px;
@@ -63,13 +88,19 @@ aside p {
     font-size: 0.9rem;
 }
 
-/* Posts */
+
+/* =========================================================
+   POSTS — the feed of post cards in the middle (index.html)
+   ========================================================= */
+
+/* Column that stacks the post cards */
 section {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
+/* A single post card */
 article {
     padding: 16px;
     background: #ffffff;
@@ -77,6 +108,7 @@ article {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
+/* Date in the top-right corner of a post */
 article header {
     text-align: right;
     margin-bottom: 8px;
@@ -87,16 +119,19 @@ time {
     font-size: 0.85rem;
 }
 
+/* Post image */
 article img {
     display: block;
     width: 100%;
     border-radius: 8px;
 }
 
+/* Post text */
 article p {
     margin: 10px 0;
 }
 
+/* 👍 like button */
 article button {
     padding: 4px 12px;
     background: #f0f0f2;
@@ -109,7 +144,159 @@ article button:hover {
     background: #e2e3e6;
 }
 
-/* Footer */
+
+/* =========================================================
+   ADD POST FORM — the "Create a post" card (addPost.html)
+   ========================================================= */
+
+/* The form card itself (also the base for the login card) */
+form {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    text-align: left;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Each label + field group stretches the full width */
+form > div {
+    width: 100%;
+}
+
+/* "Create a post" / "Welcome to PostIt" heading */
+form h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+/* "Post body" and "Select file" labels */
+form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Post body text box */
+textarea {
+    width: 100%;
+    min-height: 320px;
+    padding: 12px 14px;
+    font: inherit;
+    color: inherit;
+    background: #f5f5f6;
+    border: 1px solid #dcdde0;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #8a8e95;
+    background: #ffffff;
+}
+
+/* File picker */
+input[type="file"] {
+    font-size: 0.9rem;
+    color: #6b6f76;
+}
+
+/* "Choose file" button inside the file picker */
+input[type="file"]::file-selector-button {
+    margin-right: 10px;
+    padding: 6px 14px;
+    font: inherit;
+    font-weight: 600;
+    color: #2b2d31;
+    background: #f0f0f2;
+    border: 1px solid #dcdde0;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: #e2e3e6;
+}
+
+/* "Create post" / "Log in" submit button */
+form button {
+    padding: 8px 20px;
+    font: inherit;
+    font-weight: 600;
+    color: #ffffff;
+    background: #2b2d31;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+form button:hover {
+    background: #45484e;
+}
+
+
+/* =========================================================
+   LOGIN FORM — the narrow, centered card (login.html)
+   ========================================================= */
+
+/* Narrower card with everything centered */
+form.login {
+    max-width: 380px;
+    align-items: stretch;
+    gap: 12px;
+    text-align: center;
+}
+
+/* "or / Please log in" text */
+form.login p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #6b6f76;
+}
+
+/* Email and password fields */
+form.login input {
+    width: 100%;
+    padding: 10px 14px;
+    font: inherit;
+    color: inherit;
+    background: #f5f5f6;
+    border: 1px solid #dcdde0;
+    border-radius: 8px;
+}
+
+form.login input:focus {
+    outline: none;
+    border-color: #8a8e95;
+    background: #ffffff;
+}
+
+/* "Create an account" and "Forgot password?" links */
+form.login a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2b2d31;
+    text-decoration: none;
+}
+
+form.login a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   FOOTER — bottom bar (all pages)
+   ========================================================= */
+
 footer {
     max-width: 1100px;
     margin: 16px auto 0;
@@ -120,9 +307,33 @@ footer {
     color: #6b6f76;
 }
 
-/* Stack columns on small screens */
+
+/* =========================================================
+   RESPONSIVE — stack columns into one on small screens
+   ========================================================= */
+
 @media (max-width: 800px) {
     main {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: stretch;
     }
+    main > aside {
+        flex: none;
+    }
+}
+
+
+/* =========================================================
+   SIBLING SELECTORS — "+" and "~" examples
+   ========================================================= */
+
+/* Adjacent sibling: divider between the two form rows (addPost.html) */
+form > div + div {
+    padding-top: 16px;
+    border-top: 1px solid #ececee;
+}
+
+/* General sibling: links after the heading get the blue from Figure 3 (login.html) */
+form.login h1 ~ a {
+    color: #1a6fd1;
 }
